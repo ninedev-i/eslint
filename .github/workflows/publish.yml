@@ -11,26 +11,39 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      pr: ${{ steps.release.outputs.pr }}
     steps:
-      - uses: googleapis/release-please-action@v4
-        id: release
+      - id: release
+        uses: google-github-actions/release-please-action@v4
         with:
           release-type: node
           token: ${{ secrets.RELEASE_PLEASE }}
 
+      - name: Enable auto-merge for release PR
+        if: ${{ steps.release.outputs.pr }}
+        run: gh pr merge --squash --auto ${{ steps.release.outputs.pr }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish:
+    needs: release-please
+    if: ${{ needs.release-please.outputs.release_created }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
       - uses: actions/checkout@v4
-        if: ${{ steps.release.outputs.release_created }}
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 12
-          registry-url: 'https://registry.npmjs.org'
-        if: ${{ steps.release.outputs.release_created }}
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org/'
 
       - run: npm ci
-        if: ${{ steps.release.outputs.release_created }}
 
-      - run: npm publish
+      - name: Publish to npm
+        run: npm publish --access public
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-        if: ${{ steps.release.outputs.release_created }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
