@@ -1,4 +1,4 @@
-name: Publish to GitHub Packages
+name: Publish to npm
 
 on:
   push:
@@ -8,9 +8,6 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
 
     steps:
       - uses: actions/checkout@v4
@@ -18,16 +15,20 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          registry-url: 'https://npm.pkg.github.com'
-          scope: '@ninedev-i'
+          registry-url: 'https://registry.npmjs.org/'
 
       - run: npm ci
 
       - name: Bump version
         run: |
           npm version patch --no-git-tag-version
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add package.json package-lock.json || true
+          git commit -m "chore: bump version [skip ci]" || echo "No changes to commit"
+          git push
 
       - name: Publish package
         run: npm publish --access public
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
