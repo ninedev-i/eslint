@@ -1,6 +1,6 @@
 {
   "name": "@ninedev-i/eslint",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "type": "module",
   "main": "index.js",
   "exports": {
