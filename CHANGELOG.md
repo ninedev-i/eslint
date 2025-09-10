@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.1.1](https://github.com/ninedev-i/eslint/compare/v1.1.0...v1.1.1) (2025-09-10)
+
+
+### Bug Fixes
+
+* automerge ([a486d8b](https://github.com/ninedev-i/eslint/commit/a486d8b17712f35788e91c9fa3649c7f2d196a32))
+* automerge ([777c507](https://github.com/ninedev-i/eslint/commit/777c5071d96fb9e7dbed975e488907acc2ea6efe))
+* automerge ([cc72f37](https://github.com/ninedev-i/eslint/commit/cc72f37cd967cb8270916356157d6fb8cc8a6918))
+
 ## [1.1.0](https://github.com/ninedev-i/eslint/compare/v1.0.0...v1.1.0) (2025-09-10)
 
 
