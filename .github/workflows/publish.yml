@@ -12,7 +12,7 @@ jobs:
       - uses: google-github-actions/release-please-action@v4
         with:
           release-type: node
-          package-name: @ninedev-i/eslint
+          package-name: "@ninedev-i/eslint"
 
   publish:
     needs: release-please
