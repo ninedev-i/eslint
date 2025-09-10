@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/ninedev-i/eslint/compare/v1.0.0...v1.1.0) (2025-09-10)
+
+
+### Features
+
+* update version ([7bcf201](https://github.com/ninedev-i/eslint/commit/7bcf201c5b277983c443b55e5091f59d8b24fbd6))
+
 ## 1.0.0 (2025-09-10)
 
 
