@@ -3,7 +3,7 @@ name: Publish to npm
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   publish:
@@ -19,7 +19,6 @@ jobs:
 
       - run: npm ci
 
-      # автоматически увеличиваем patch-версию
       - name: Bump version
         run: |
           npm version patch --no-git-tag-version
