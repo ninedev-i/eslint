@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/ninedev-i/eslint/compare/v1.1.1...v1.1.2) (2025-09-10)
+
+
+### Bug Fixes
+
+* check is it works ([31e5a52](https://github.com/ninedev-i/eslint/commit/31e5a52dc29f79e6602b7159bde13d4f3f45e3dc))
+
 ## [1.1.1](https://github.com/ninedev-i/eslint/compare/v1.1.0...v1.1.1) (2025-09-10)
 
 
