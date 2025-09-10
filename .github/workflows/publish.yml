@@ -1,4 +1,4 @@
-name: Publish to npm
+name: Release & Publish
 
 on:
   push:
@@ -6,9 +6,18 @@ on:
       - master
 
 jobs:
-  publish:
+  release-please:
     runs-on: ubuntu-latest
+    steps:
+      - uses: google-github-actions/release-please-action@v4
+        with:
+          release-type: node
+          package-name: @ninedev-i/eslint
 
+  publish:
+    needs: release-please
+    if: ${{ needs.release-please.outputs.release_created }}
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
@@ -19,11 +28,7 @@ jobs:
 
       - run: npm ci
 
-      - name: Bump version
-        run: |
-          npm version patch --no-git-tag-version
-
-      - name: Publish package
+      - name: Publish to npm
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
