@@ -1,6 +1,6 @@
 {
   "name": "@ninedev-i/eslint",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "type": "module",
   "main": "index.js",
   "exports": {
@@ -10,9 +10,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ninedev-i/eslint.git"
-  },
-  "publishConfig": {
-    "@ninedev-i:registry": "https://npm.pkg.github.com"
   },
   "peerDependencies": {
     "@eslint/js": "9.19.0",
